@@ -12,6 +12,7 @@ header {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 header h1 {
@@ -23,7 +24,6 @@ header h1 {
   padding: 10px;
   font-size: 14px;
   width: 200px;
-  margin: 10px;
   border-radius: 5px;
   border: none;
 }
@@ -39,13 +39,15 @@ header h1 {
 
 #content-area {
   display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   gap: 20px;
   padding: 20px;
-  overflow-x: auto;
   scroll-behavior: smooth;
 }
 
 .card {
+  display: block;
   min-width: 250px;
   background: #1e40af;
   border-radius: 10px;
@@ -54,10 +56,37 @@ header h1 {
   font-weight: bold;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   flex-shrink: 0;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .card:hover {
   transform: scale(1.05);
+  background: #2563eb;
+}
+
+@media (max-width: 600px) {
+  #content-area {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card {
+    min-width: 90%;
+    margin: 10px 0;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #search {
+    width: 100%;
+  }
+
+  #logout-btn {
+    align-self: flex-end;
+  }
 }
