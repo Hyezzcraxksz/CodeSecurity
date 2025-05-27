@@ -1,89 +1,53 @@
 body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #1f2937, #4f46e5);
-  height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
 .auth-container {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
   padding: 30px;
-  width: 320px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  width: 300px;
   text-align: center;
-  color: white;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
-.tab-toggle {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.tab {
-  flex: 1;
+input {
+  width: 100%;
   padding: 10px;
-  background: transparent;
-  border: none;
-  font-size: 16px;
-  color: white;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.tab.active {
-  font-weight: bold;
-  border-bottom: 2px solid #22d3ee;
-  color: #22d3ee;
-}
-
-.auth-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.auth-form input {
-  padding: 12px;
   margin: 10px 0;
   border: none;
   border-radius: 6px;
   background: rgba(255,255,255,0.1);
   color: white;
-  font-size: 15px;
 }
 
-.auth-form input::placeholder {
-  color: #ccc;
-}
-
-.auth-form button {
-  padding: 12px;
-  margin-top: 10px;
-  background: #22d3ee;
-  color: #1e293b;
-  font-weight: bold;
+button {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  background: #3b82f6;
   border: none;
   border-radius: 6px;
+  color: white;
+  font-weight: bold;
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
-.auth-form button:hover {
-  background: #06b6d4;
-}
-
-.hidden {
-  display: none;
+button:hover {
+  background: #2563eb;
 }
 
 #status {
-  margin-top: 15px;
-  font-size: 14px;
+  margin-top: 10px;
   color: #facc15;
+  font-size: 14px;
 }
