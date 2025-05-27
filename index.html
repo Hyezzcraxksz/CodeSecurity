@@ -2,19 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Login | Hyezzcraxksz Academy</title>
+  <title>Login/Register | Hyezzcraxksz Academy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="auth-container">
-    <h2>Welcome Back!</h2>
+    <div class="tab-toggle">
+      <button id="login-tab" class="tab active">Login</button>
+      <button id="register-tab" class="tab">Register</button>
+    </div>
 
     <input id="email" type="email" placeholder="Email" />
     <input id="password" type="password" placeholder="Password" />
-
-    <button id="email-login-btn">Login</button>
-    <button id="email-register-btn">Register</button>
+    <button id="main-action-btn">Login</button>
     <button id="google-login-btn">Continue with Google</button>
 
     <p id="status"></p>
