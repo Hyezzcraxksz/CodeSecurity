@@ -21,6 +21,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
+// DOM Elements
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const status = document.getElementById("status");
@@ -29,49 +30,49 @@ const loginTab = document.getElementById("login-tab");
 const registerTab = document.getElementById("register-tab");
 const googleBtn = document.getElementById("google-login-btn");
 
-let mode = "login"; // default mode
+let mode = "login";
 
-// Tab logic
+// Tab Switching
 loginTab.addEventListener("click", () => {
   mode = "login";
+  mainBtn.textContent = "Login";
   loginTab.classList.add("active");
   registerTab.classList.remove("active");
-  mainBtn.textContent = "Login";
   status.textContent = "";
 });
 
 registerTab.addEventListener("click", () => {
   mode = "register";
+  mainBtn.textContent = "Register";
   registerTab.classList.add("active");
   loginTab.classList.remove("active");
-  mainBtn.textContent = "Register";
   status.textContent = "";
 });
 
-// Main login/register handler
+// Main Action (Login or Register)
 mainBtn.addEventListener("click", () => {
-  const userEmail = email.value.trim();
-  const userPassword = password.value.trim();
+  const emailVal = email.value.trim();
+  const passVal = password.value.trim();
 
-  if (!userEmail || !userPassword) {
-    status.textContent = "Please fill in both fields.";
+  if (!emailVal || !passVal) {
+    status.textContent = "Please fill in all fields.";
     return;
   }
 
   if (mode === "login") {
-    signInWithEmailAndPassword(auth, userEmail, userPassword)
-      .then(() => window.location.href = "dashboard.html")
+    signInWithEmailAndPassword(auth, emailVal, passVal)
+      .then(() => (window.location.href = "dashboard.html"))
       .catch(err => status.textContent = "Login Error: " + err.message);
   } else {
-    createUserWithEmailAndPassword(auth, userEmail, userPassword)
-      .then(() => window.location.href = "dashboard.html")
+    createUserWithEmailAndPassword(auth, emailVal, passVal)
+      .then(() => (window.location.href = "dashboard.html"))
       .catch(err => status.textContent = "Register Error: " + err.message);
   }
 });
 
-// Google login
+// Google Login
 googleBtn.addEventListener("click", () => {
   signInWithPopup(auth, provider)
     .then(() => window.location.href = "dashboard.html")
-    .catch(err => status.textContent = "Google Sign-in Error: " + err.message);
+    .catch(err => status.textContent = "Google Login Error: " + err.message);
 });
