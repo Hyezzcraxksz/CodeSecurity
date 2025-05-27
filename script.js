@@ -1,13 +1,14 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import {
   getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
   GoogleAuthProvider,
-  signInWithPopup
+  signInWithPopup,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
-// Firebase Config
+// Your Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyAt1y_W0qeluBWuvUa-CKBI8OQ3PVwr8f4",
   authDomain: "codinghackclass.firebaseapp.com",
@@ -21,69 +22,59 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-// DOM Elements
-const loginTab = document.getElementById("login-tab");
-const registerTab = document.getElementById("register-tab");
-const loginForm = document.getElementById("login-form");
-const registerForm = document.getElementById("register-form");
-const status = document.getElementById("status");
+// DOM elements
+const emailInput = document.getElementById("email");
+const passInput = document.getElementById("password");
+const loginBtn = document.getElementById("email-login-btn");
+const registerBtn = document.getElementById("email-register-btn");
+const googleBtn = document.getElementById("google-login-btn");
+const statusText = document.getElementById("status");
 
-// Tab Toggle Logic
-loginTab.addEventListener("click", () => {
-  loginTab.classList.add("active");
-  registerTab.classList.remove("active");
-  loginForm.classList.remove("hidden");
-  registerForm.classList.add("hidden");
-  status.textContent = "";
+// Google login
+googleBtn.addEventListener("click", () => {
+  signInWithPopup(auth, provider)
+    .then(result => {
+      window.location.href = "dashboard.html";
+    })
+    .catch(error => {
+      statusText.textContent = `Google Login Error: ${error.message}`;
+    });
 });
 
-registerTab.addEventListener("click", () => {
-  registerTab.classList.add("active");
-  loginTab.classList.remove("active");
-  registerForm.classList.remove("hidden");
-  loginForm.classList.add("hidden");
-  status.textContent = "";
-});
+// Email login
+loginBtn.addEventListener("click", () => {
+  const email = emailInput.value.trim();
+  const password = passInput.value.trim();
 
-// Login
-loginForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const email = document.getElementById("login-email").value;
-  const password = document.getElementById("login-password").value;
+  if (!email || !password) {
+    statusText.textContent = "Enter both email and password.";
+    return;
+  }
 
   signInWithEmailAndPassword(auth, email, password)
-    .then((cred) => {
-      status.textContent = `Logged in as ${cred.user.email}`;
-      loginForm.reset();
+    .then(() => {
+      window.location.href = "dashboard.html";
     })
-    .catch((err) => {
-      status.textContent = `Error: ${err.message}`;
+    .catch(error => {
+      statusText.textContent = `Login Error: ${error.message}`;
     });
 });
 
-// Register
-registerForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const email = document.getElementById("register-email").value;
-  const password = document.getElementById("register-password").value;
+// Email register
+registerBtn.addEventListener("click", () => {
+  const email = emailInput.value.trim();
+  const password = passInput.value.trim();
+
+  if (!email || !password) {
+    statusText.textContent = "Enter both email and password.";
+    return;
+  }
 
   createUserWithEmailAndPassword(auth, email, password)
-    .then((cred) => {
-      status.textContent = `Account created for ${cred.user.email}`;
-      registerForm.reset();
+    .then(() => {
+      window.location.href = "dashboard.html";
     })
-    .catch((err) => {
-      status.textContent = `Error: ${err.message}`;
-    });
-});
-
-// Google Login
-document.getElementById("google-login").addEventListener("click", () => {
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      status.textContent = `Welcome, ${result.user.displayName}`;
-    })
-    .catch((err) => {
-      status.textContent = `Google Login Error: ${err.message}`;
+    .catch(error => {
+      statusText.textContent = `Register Error: ${error.message}`;
     });
 });
