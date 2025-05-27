@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auth Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="auth-container">
+    <div class="tab-toggle">
+      <button id="login-tab" class="tab active">Login</button>
+      <button id="register-tab" class="tab">Register</button>
+    </div>
+
+    <form id="login-form" class="auth-form">
+      <input type="email" id="login-email" placeholder="Email" required />
+      <input type="password" id="login-password" placeholder="Password" required />
+      <button type="submit">Login</button>
+      <button type="button" id="google-login">Continue with Google</button>
+    </form>
+
+    <form id="register-form" class="auth-form hidden">
+      <input type="email" id="register-email" placeholder="Email" required />
+      <input type="password" id="register-password" placeholder="Password" required />
+      <button type="submit">Register</button>
+    </form>
+
+    <p id="status"></p>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
