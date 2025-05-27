@@ -19,6 +19,28 @@ body {
   text-align: center;
 }
 
+.tab-toggle {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tab.active {
+  border-bottom: 2px solid #22d3ee;
+  color: #22d3ee;
+}
+
 input {
   width: 100%;
   padding: 10px;
